@@ -3,7 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DUO - Link Tree</title>
+    <title>DUO - Linktreeduo</title>
+    
+    <!-- Element SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@ecomplus/storefront-twbs@latest/dist/storefront.min.js"></script>
+    
+    <!-- Facebook SDK -->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0" integrity="sha512-XoJsZ4ypEsRy0d6CcwF9gT7NzrAy6TNcFujaRMcNMB7uoy8v2gVrqLQcxYxvjcI37iLt3CFDQavHT7WeZyYrSg==" crossorigin="anonymous"></script>
+    
+    <!-- Data SDK -->
+    <script async src="https://cdn.jsdelivr.net/npm/@ecomplus/analytics@latest/dist/analytics.min.js"></script>
+    
     <style>
         * {
             margin: 0;
@@ -13,138 +24,218 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             padding: 20px;
         }
         
         .container {
-            max-width: 600px;
-            width: 100%;
-        }
-        
-        .profile-section {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.95);
+            background: white;
             border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            max-width: 500px;
+            width: 100%;
             padding: 40px 30px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
         }
         
-        .logo-container {
+        .logo-section {
             margin-bottom: 30px;
         }
         
-        .logo {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto;
+        .logo-svg {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            display: block;
         }
         
         h1 {
-            color: #333;
+            color: #2c3e50;
             font-size: 28px;
-            margin-bottom: 10px;
             font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
         }
         
         .tagline {
-            color: #666;
+            color: #7f8c8d;
             font-size: 14px;
             margin-bottom: 30px;
+            font-weight: 500;
         }
         
-        .links-section {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+        .link-section {
+            margin: 20px 0;
         }
         
-        .link-button {
+        .bio-link {
             display: block;
-            padding: 16px 24px;
-            background: linear-gradient(135deg, #5BA3D0 0%, #4A8BB8 100%);
+            background: linear-gradient(135deg, #5BA3D0 0%, #4a8bb8 100%);
             color: white;
-            text-decoration: none;
+            padding: 14px 20px;
+            margin: 12px 0;
             border-radius: 10px;
+            text-decoration: none;
             font-weight: 600;
-            font-size: 16px;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(91, 163, 208, 0.3);
+            font-size: 15px;
+            border: 2px solid transparent;
         }
         
-        .link-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(91, 163, 208, 0.4);
+        .bio-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(91, 163, 208, 0.3);
+            border-color: #3d6fa0;
+        }
+        
+        .bio-link:active {
+            transform: translateY(0);
         }
         
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
+            padding-top: 30px;
+            border-top: 1px solid #ecf0f1;
         }
         
-        .social-icon {
+        .social-link {
             width: 40px;
             height: 40px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #f0f0f0;
-            border-radius: 50%;
-            color: #5BA3D0;
             text-decoration: none;
-            font-size: 18px;
             transition: all 0.3s ease;
+            font-size: 18px;
         }
         
-        .social-icon:hover {
-            background: #5BA3D0;
+        .social-link.instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
             color: white;
-            transform: scale(1.1);
+        }
+        
+        .social-link.twitter {
+            background: #1DA1F2;
+            color: white;
+        }
+        
+        .social-link.facebook {
+            background: #1877F2;
+            color: white;
+        }
+        
+        .social-link.linkedin {
+            background: #0A66C2;
+            color: white;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ecf0f1;
+            font-size: 12px;
+            color: #95a5a6;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .logo-svg {
+                width: 100px;
+                height: 100px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="profile-section">
-            <div class="logo-container">
-                <svg class="logo" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-                    <!-- D Letter -->
-                    <path d="M 20 25 L 40 25 Q 55 25 55 45 L 55 75 Q 55 95 40 95 L 20 95 Z M 35 40 L 35 80 Q 40 85 45 85 Q 52 85 52 75 L 52 45 Q 52 40 45 40 L 35 40 Z" fill="#5BA3D0" stroke="none"/>
-                    
-                    <!-- U Letter -->
-                    <path d="M 65 25 L 68 25 L 68 65 Q 68 85 80 85 Q 92 85 92 65 L 92 25 L 95 25 L 95 65 Q 95 90 80 90 Q 65 90 65 65 Z" fill="#5BA3D0" stroke="none"/>
-                    
-                    <!-- O Letter -->
-                    <path d="M 105 45 Q 105 25 120 25 Q 135 25 135 45 L 135 75 Q 135 95 120 95 Q 105 95 105 75 Z M 108 45 Q 108 30 120 30 Q 132 30 132 45 L 132 75 Q 132 90 120 90 Q 108 90 108 75 Z" fill="#5BA3D0" stroke="none"/>
-                </svg>
-            </div>
+        <div class="logo-section">
+            <svg class="logo-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- Background circle -->
+                <circle cx="100" cy="100" r="95" fill="#f8fbfd" stroke="#5BA3D0" stroke-width="2"/>
+                
+                <!-- D letter -->
+                <g transform="translate(30, 70)">
+                    <line x1="0" y1="0" x2="0" y2="60" stroke="#5BA3D0" stroke-width="6" stroke-linecap="round"/>
+                    <path d="M 0 0 Q 25 0 25 15 L 25 45 Q 25 60 0 60" fill="none" stroke="#5BA3D0" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+                
+                <!-- U letter -->
+                <g transform="translate(70, 70)">
+                    <line x1="0" y1="0" x2="0" y2="40" stroke="#5BA3D0" stroke-width="6" stroke-linecap="round"/>
+                    <path d="M 0 40 Q 0 60 15 60 Q 30 60 30 40" fill="none" stroke="#5BA3D0" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="30" y1="0" x2="30" y2="40" stroke="#5BA3D0" stroke-width="6" stroke-linecap="round"/>
+                </g>
+                
+                <!-- O letter with vertical dividing line -->
+                <g transform="translate(120, 70)">
+                    <ellipse cx="15" cy="30" rx="15" ry="30" fill="none" stroke="#5BA3D0" stroke-width="6"/>
+                    <!-- Vertical dividing line in the middle of O -->
+                    <line x1="15" y1="0" x2="15" y2="60" stroke="#5BA3D0" stroke-width="4" opacity="0.7"/>
+                </g>
+            </svg>
             
-            <h1>Welcome to DUO</h1>
-            <p class="tagline">Your central hub for all links and connections</p>
-            
-            <div class="links-section">
-                <a href="#" class="link-button">🔗 My Portfolio</a>
-                <a href="#" class="link-button">📱 Contact Me</a>
-                <a href="#" class="link-button">💼 LinkedIn Profile</a>
-                <a href="#" class="link-button">🐙 GitHub</a>
-                <a href="#" class="link-button">🎨 Design Work</a>
-            </div>
-            
-            <div class="social-links">
-                <a href="#" class="social-icon">f</a>
-                <a href="#" class="social-icon">t</a>
-                <a href="#" class="social-icon">in</a>
-                <a href="#" class="social-icon">@</a>
-            </div>
+            <h1>DUO</h1>
+            <p class="tagline">Connect with us across all platforms</p>
+        </div>
+        
+        <div class="link-section">
+            <a href="#" class="bio-link">🌐 Visit Our Website</a>
+            <a href="#" class="bio-link">📱 Mobile App</a>
+            <a href="#" class="bio-link">💼 Learn More</a>
+            <a href="#" class="bio-link">🎯 Contact Us</a>
+        </div>
+        
+        <div class="social-links">
+            <a href="#" class="social-link instagram" title="Instagram">f</a>
+            <a href="#" class="social-link twitter" title="Twitter">𝕏</a>
+            <a href="#" class="social-link facebook" title="Facebook">f</a>
+            <a href="#" class="social-link linkedin" title="LinkedIn">in</a>
+        </div>
+        
+        <div class="footer">
+            <p>© 2026 DUO. All rights reserved.</p>
+            <p>Powered by Linktreeduo</p>
         </div>
     </div>
+    
+    <!-- Element Data SDK initialization -->
+    <script>
+        // Initialize analytics if available
+        if (window.ecomAnalytics) {
+            window.ecomAnalytics.config({
+                storeId: 'duo-store',
+                debug: false
+            });
+        }
+        
+        // Track page view
+        if (window.dataLayer) {
+            window.dataLayer.push({
+                event: 'page_view',
+                page_title: 'DUO Bio Link',
+                page_location: window.location.href
+            });
+        }
+    </script>
 </body>
 </html>
